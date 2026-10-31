@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Cloud Infrastructure Parent Module -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven POM Model Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent Project -->
+    <!-- Inherits Java Version, Spring Cloud Version,
+         Plugin Management and Dependency Management -->
+    <parent>
+        <groupId>com.airline</groupId>
+        <artifactId>airline-microservice</artifactId>
+        <version>1.0.0</version>
+
+        <!-- Location of Parent POM -->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!-- Module Name -->
+    <artifactId>cloud</artifactId>
+
+    <!--
+        Packaging = pom
+
+        Means:
+        - No executable JAR generated
+        - No Spring Boot application
+
+        Purpose:
+        Acts as an Aggregator Module
+    -->
+    <packaging>pom</packaging>
+
+    <!-- Project Name -->
+    <name>Cloud Infrastructure</name>
+
+    <!-- Description -->
+    <description>
+        Aggregator for cloud infrastructure modules
+        (Eureka, Config Server, API Gateway)
+    </description>
+
+    <!-- Child Cloud Modules -->
+    <modules>
+
+        <!--
+            Eureka Server
+
+            Purpose:
+            Service Discovery
+
+            Example:
+
+            Booking Service registers itself.
+            Flight Service registers itself.
+
+            Eureka knows where every service is running.
+
+            URL:
+            http://localhost:8761
+        -->
+        <!--        <module>service-registry</module>-->
+
+        <!--
+            Spring Cloud Config Server
+
+            Purpose:
+            Centralized Configuration
+
+            Stores:
+
+            application.yml
+            booking-service.yml
+            flight-service.yml
+
+            All services fetch configuration from here.
+        -->
+        <!--        <module>config-server</module>-->
+
+        <!--
+            API Gateway
+
+            Purpose:
+            Single Entry Point
+
+            Client
+               |
+               v
+            Gateway
+               |
+
+            |       |       |
+            v       v       v
+          Flight Booking Payment
+
+            Features:
+
+            - Routing
+            - Load Balancing
+            - Authentication
+            - Logging
+            - Rate Limiting
+        -->
+        <!--        <module>api-gateway</module>-->
+
+    </modules>
+
+</project>

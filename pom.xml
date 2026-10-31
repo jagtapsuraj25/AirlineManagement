@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Root Maven Project -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven POM Model Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Spring Boot Parent POM -->
+    <!-- Provides dependency management and plugin defaults -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/>
+    </parent>
+
+    <!-- Project Coordinates -->
+    <groupId>com.airline</groupId>
+    <artifactId>airline-microservice</artifactId>
+    <version>1.0.0</version>
+
+    <!-- Parent Project Only (No JAR Generated) -->
+    <packaging>pom</packaging>
+
+    <!-- Project Information -->
+    <name>Airline Management System</name>
+    <description>Parent Project for Airline Management Microservices</description>
+
+    <!-- Child Modules -->
+    <modules>
+
+        <!-- Shared DTOs, Utils, Constants, Exceptions -->
+        <module>common-lib</module>
+
+        <!-- Gateway, Eureka, Config Server -->
+        <module>cloud</module>
+
+        <!-- Flight, Booking, Passenger Services -->
+        <module>services</module>
+        <module>cloud</module>
+        <module>common-lib</module>
+        <module>services</module>
+
+    </modules>
+
+    <!-- Common Properties -->
+    <properties>
+
+        <!-- Java Version -->
+
+        <java.version>18</java.version>
+
+        <spring.cloud.version>2025.0.0</spring.cloud.version>
+
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+
+        <!-- Spring Cloud Version -->
+        <spring.cloud.version>2025.0.0</spring.cloud.version>
+
+        <!-- Compiler Source & Target -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    </properties>
+
+    <!-- Dependency Version Management -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!--
+                Spring Cloud BOM
+                Manages versions for:
+                - Eureka
+                - Gateway
+                - Config Server
+                - OpenFeign
+                - Load Balancer
+            -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- Build Configuration -->
+    <build>
+
+        <!-- Plugin Version Management -->
+        <pluginManagement>
+            <plugins>
+
+                <!--
+                    Compiles Java Source Code
+                    mvn compile
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.0</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+
+                <!--
+                    Runs Unit Tests
+                    mvn test
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.3</version>
+                </plugin>
+
+                <!--
+                    Runs Integration Tests
+                    mvn verify
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.5.3</version>
+                </plugin>
+
+                <!--
+                    Creates JAR Files
+                    mvn package
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.4.2</version>
+                </plugin>
+
+                <!--
+                    Spring Boot Plugin
+                    - Creates Executable JAR
+                    - Supports mvn spring-boot:run
+                    - Packages Dependencies
+                -->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+</project>

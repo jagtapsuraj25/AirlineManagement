@@ -1,0 +1,83 @@
+<!--This XML file does not appear to have any style information associated with it. The document tree is shown below.-->
+<!--  Business Services Parent Module  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--  Maven Model Version  -->
+    <modelVersion>4.0.0</modelVersion>
+    <!--  Parent Project  -->
+    <!--  Inherits:
+             - Java Version
+             - Spring Cloud Version
+             - Plugin Management
+             - Dependency Management  -->
+    <parent>
+        <groupId>com.airline</groupId>
+        <artifactId>airline-microservice</artifactId>
+        <version>1.0.0</version>
+        <!--  Location of Parent POM  -->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <!--  Module Name  -->
+    <artifactId>services</artifactId>
+    <!--
+            Packaging = pom
+
+            Purpose:
+            Acts as a container for all
+            business microservices.
+
+            No executable JAR is generated.
+         -->
+    <packaging>pom</packaging>
+    <!--  Module Name  -->
+    <name>Business Services</name>
+    <!--  Description  -->
+    <description> Aggregator for all business microservices (User, Flight, Booking, Payment, etc.) </description>
+    <!--  Child Business Services  -->
+    <modules>
+        <!--
+                    User Service
+
+                    Responsibilities:
+
+                    - User Registration
+                    - Login
+                    - Profile Management
+                    - Role Management
+                    - Authentication Support
+
+                    Example APIs:
+
+                    POST /users/register
+                    POST /users/login
+                    GET  /users/{id}
+                    PUT  /users/{id}
+                 -->
+        <!--         <module>user-services</module> -->
+
+        <!--  Future Services Can Be Added  -->
+        <!--
+                <module>flight-service</module>
+
+                Handles:
+                - Flight CRUD
+                - Flight Search
+                - Seat Availability
+                 -->
+        <!--
+                <module>booking-service</module>
+
+                Handles:
+                - Ticket Booking
+                - Cancellation
+                - Booking History
+                 -->
+        <!--
+                <module>payment-service</module>
+
+                Handles:
+                - Payment Processing
+                - Refunds
+                - Transaction History
+                 -->
+    </modules>
+</project>

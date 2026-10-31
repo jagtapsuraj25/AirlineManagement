@@ -1,0 +1,218 @@
+<!--This XML file does not appear to have any style information associated with it. The document tree is shown below.-->
+<!--  Common Library Module  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--  Maven Model Version  -->
+    <modelVersion>4.0.0</modelVersion>
+    <!--  Parent Project  -->
+    <!--  Inherits Java version, plugins, dependency management  -->
+    <parent>
+        <groupId>com.airline</groupId>
+        <artifactId>airline-microservice</artifactId>
+        <version>1.0.0</version>
+        <!--  Location of parent pom.xml  -->
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <!--  Module Name  -->
+    <artifactId>common-lib</artifactId>
+    <!--  Generate JAR File  -->
+    <packaging>jar</packaging>
+    <name>common-lib</name>
+    <!--  Shared Library Used By All Microservices  -->
+    <description> Shared DTOs, enums, and utilities for airline microservices </description>
+    <dependencies>
+        <!--  ======================================================  -->
+        <!--  LOMBOK  -->
+        <!--  ======================================================  -->
+        <!--
+                    Purpose:
+                    Reduces boilerplate code.
+
+                    Generates:
+                    @Getter
+                    @Setter
+                    @Data
+                    @Builder
+                    @NoArgsConstructor
+                    @AllArgsConstructor
+
+                    Example:
+
+                    @Data
+                    public class PassengerDto {
+                        private Long id;
+                        private String name;
+                    }
+
+                    Lombok automatically creates:
+                    getId()
+                    setId()
+                    getName()
+                    setName()
+                    toString()
+                    equals()
+                    hashCode()
+                 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!--  Needed only during compilation  -->
+            <optional>true</optional>
+        </dependency>
+        <!--  ======================================================  -->
+        <!--  JACKSON DATABIND  -->
+        <!--  ======================================================  -->
+        <!--
+                    Purpose:
+                    Convert Java Objects ↔ JSON
+
+                    Java Object
+                         ↓
+                     JSON
+
+                    JSON
+                         ↓
+                    Java Object
+
+                    Example:
+
+                    ObjectMapper mapper = new ObjectMapper();
+
+                    String json =
+                        mapper.writeValueAsString(passenger);
+
+                    PassengerDto dto =
+                        mapper.readValue(json, PassengerDto.class);
+                 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!--  ======================================================  -->
+        <!--  JACKSON JSR310  -->
+        <!--  ======================================================  -->
+        <!--
+                    Purpose:
+                    Supports Java 8+ Date/Time API
+
+                    Examples:
+                    LocalDate
+                    LocalDateTime
+                    LocalTime
+                    ZonedDateTime
+
+                    Without this dependency:
+
+                    LocalDateTime may fail
+                    during JSON serialization.
+
+                    Example:
+
+                    private LocalDateTime bookingDate;
+                 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <!--  ======================================================  -->
+        <!--  JAKARTA PERSISTENCE API  -->
+        <!--  ======================================================  -->
+        <!--
+                    Purpose:
+                    Provides JPA Annotations
+
+                    Common Annotations:
+
+                    @Entity
+                    @Table
+                    @Id
+                    @Column
+                    @GeneratedValue
+                    @ManyToOne
+                    @OneToMany
+                    @OneToOne
+
+                    Example:
+
+                    @Entity
+                    public class Flight {
+
+                        @Id
+                        private Long id;
+                    }
+
+                    Note:
+                    This provides annotations only.
+
+                    Actual implementation is provided
+                    by Hibernate.
+                 -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+        <!--  ======================================================  -->
+        <!--  SPRING BOOT VALIDATION  -->
+        <!--  ======================================================  -->
+        <!--
+                    Purpose:
+                    Validate Request Objects
+
+                    Common Annotations:
+
+                    @NotNull
+                    @NotBlank
+                    @Size
+                    @Email
+                    @Min
+                    @Max
+                    @Pattern
+
+                    Example:
+
+                    public class PassengerDto {
+
+                        @NotBlank
+                        private String name;
+
+                        @Email
+                        private String email;
+                    }
+
+                    Automatically validates
+                    incoming REST requests.
+                 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!--  ======================================================  -->
+        <!--  JUNIT JUPITER  -->
+        <!--  ======================================================  -->
+        <!--
+                    Purpose:
+                    Unit Testing Framework
+
+                    Used For:
+
+                    @Test
+                    Assertions
+                    Mock Testing
+
+                    Example:
+
+                    @Test
+                    void testBooking() {
+                        assertEquals(1,1);
+                    }
+
+                    Scope = test
+
+                    Not included in production JAR.
+                 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
